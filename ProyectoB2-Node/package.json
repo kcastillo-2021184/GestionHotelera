@@ -1,0 +1,39 @@
+{
+  "name": "proyectob2-node",
+  "version": "1.0.0",
+  "description": "hotel manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kcastillo-2021184/Proyecto-B2---Gesti-n-Hotelera.git"
+  },
+  "keywords": [
+    "hotel",
+    "event",
+    "report"
+  ],
+  "author": "FortiKids",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kcastillo-2021184/Proyecto-B2---Gesti-n-Hotelera/issues"
+  },
+  "homepage": "https://github.com/kcastillo-2021184/Proyecto-B2---Gesti-n-Hotelera#readme",
+  "dependencies": {
+    "argon2": "^0.41.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "express-validator": "^7.2.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.13.2",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.2"
+  },
+  "type": "module"
+}
