@@ -4,7 +4,11 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import multer from 'multer';
 import authRoutes from '../src/auth/auth.routes.js';
-import userRoutes from '../src/user/user.routes.js'
+import userRoutes from '../src/user/user.routes.js';
+import roomRoutes from '../src/room/room.routes.js';
+import serviceRoutes from '../src/service/service.routes.js';
+import reservationRoutes from '../src/reservation/reservation.routes.js';
+import billRoutes from '../src/bill/bill.routes.js'
 import { limiter } from '../middlewares/rate.limit.js';
 import {initializeAdmin} from '../src/user/user.controller.js'
 
@@ -23,7 +27,10 @@ const configs = (app) => {
 const routes = (app) => {
     app.use(authRoutes)
     app.use('/v1/user', userRoutes)
-
+    app.use('/v1/room', roomRoutes)
+    app.use('/v1/service', serviceRoutes)
+    app.use('/v1/reservation', reservationRoutes)
+    app.use('v1/bill', billRoutes)
 };
 
 export const initServer = async () => {

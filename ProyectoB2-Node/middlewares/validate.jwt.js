@@ -91,4 +91,39 @@ export const isUser = async(req, res, next)=>{
     }
 }
 
+export const isUserOrAdmin = async (req, res, next) => {
+    try {
+        const { user } = req
+        const { id } = req.params
+
+        // Si es Admin, puede hacer cualquier cosa
+        if (user.role === 'ADMIN') {
+            return next()
+        }
+
+        // Si no es Admin, validar que esté actuando sobre su propio recurso
+        if (user.uid !== id) {
+            return res.status(403).send({
+                success: false,
+                message: 'Unauthorized: You can only manage your own resource 👻'
+            })
+        }
+
+        // Además, validar que su cuenta esté activa
+        if (user.status === false) {
+            return res.status(403).send({
+                success: false,
+                message: `Your account is deleted, you cannot do any changes 👻 | username ${user.username}`
+            })
+        }
+
+        next()
+    } catch (err) {
+        console.error(err)
+        return res.status(403).send({
+            success: false,
+            message: 'Unauthorized role'
+        })
+    }
+}
 

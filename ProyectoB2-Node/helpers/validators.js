@@ -57,3 +57,12 @@ export const updatePasswordValidator = [
         .isLength({min: 8}),
         validateErrorWithoutImg
 ]
+
+export const updateReservationValidator = [
+    body('room', 'Room ID is invalid').optional().custom(objectIdValid),
+    body('checkInDate', 'Check-in date must be a valid date').optional().isISO8601(),
+    body('checkOutDate', 'Check-out date must be a valid date').optional().isISO8601(),
+    body('services', 'Services must be an array of valid IDs').optional().isArray(),
+    body('services.*', 'Each service ID must be valid').optional().custom(objectIdValid),
+    validateErrorWithoutImg
+]
