@@ -5,10 +5,12 @@ export const getAll = async (req, res) => {
     try {
         const { limit = 20, skip = 0 } = req.query
         const rooms = await Room.find()
-            .skip(skip)
-            .limit(limit)
+            .populate('hotel', 'name address category') // Mostrar solo ciertos campos del hotel
+            .skip(Number(skip))
+            .limit(Number(limit))
 
         if (rooms.length === 0) return res.status(404).send({ success: false, message: 'Rooms not found' })
+
         return res.send({
             success: true,
             message: 'Rooms found',
@@ -26,6 +28,7 @@ export const get = async (req, res) => {
     try {
         const { id } = req.params
         const room = await Room.findById(id)
+            .populate('hotel', 'name address category')
 
         if (!room) return res.status(404).send({ success: false, message: 'Room not found' })
         return res.send({ success: true, message: 'Room found', room })
@@ -38,7 +41,7 @@ export const get = async (req, res) => {
 // Crear nueva habitación
 export const create = async (req, res) => {
     try {
-        const { number, type, price, description } = req.body
+        const { number, type, capacity, price, description, hotel } = req.body
 
         const roomExists = await Room.findOne({ number })
         if (roomExists) return res.status(400).send({ success: false, message: 'Room number already exists' })
@@ -46,8 +49,10 @@ export const create = async (req, res) => {
         const newRoom = new Room({
             number,
             type,
+            capacity,
             price,
-            description
+            description,
+            hotel
         })
 
         await newRoom.save()
@@ -66,6 +71,7 @@ export const update = async (req, res) => {
         const updateData = req.body
 
         const room = await Room.findByIdAndUpdate(id, updateData, { new: true })
+            .populate('hotel', 'name address category')
 
         if (!room) return res.status(404).send({ success: false, message: 'Room not found' })
         return res.send({ success: true, message: 'Room updated successfully', room })

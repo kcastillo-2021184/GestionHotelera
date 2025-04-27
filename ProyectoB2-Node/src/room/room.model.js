@@ -12,6 +12,10 @@ const roomSchema = new Schema(
             enum: ['single', 'double', 'suite', 'family'],
             required: true
         },
+        capacity: {
+            type: Number,
+            required: true
+        },
         price: {
             type: Number,
             required: true
@@ -24,15 +28,20 @@ const roomSchema = new Schema(
             type: String,
             enum: ['available', 'occupied', 'maintenance'],
             default: 'available'
+        },
+        hotel: {
+            type: Schema.Types.ObjectId,
+            ref: 'Hotel',
+            required: true
         }
     }
 )
 
-//Modificar el toJSON para excluir datos en la respuesta
+// Modificar el toJSON para excluir datos en la respuesta
 roomSchema.methods.toJSON = function(){
     const { __v, ...room } = this.toObject()
     return room
 }
 
-//Crear y exportar el modelo
+// Crear y exportar el modelo
 export default model('Room', roomSchema)
