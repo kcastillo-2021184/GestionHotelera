@@ -9,6 +9,7 @@ import roomRoutes from '../src/room/room.routes.js';
 import serviceRoutes from '../src/service/service.routes.js';
 import reservationRoutes from '../src/reservation/reservation.routes.js';
 import billRoutes from '../src/bill/bill.routes.js'
+import eventRoutes from '../src/events/events.routes.js'
 import { limiter } from '../middlewares/rate.limit.js';
 import {initializeAdmin} from '../src/user/user.controller.js'
 
@@ -31,6 +32,7 @@ const routes = (app) => {
     app.use('/v1/service', serviceRoutes)
     app.use('/v1/reservation', reservationRoutes)
     app.use('v1/bill', billRoutes)
+    app.use('v1/event', eventRoutes)
 };
 
 export const initServer = async () => {
