@@ -7,6 +7,7 @@ import {
     deleteHotel
 } from './hotel.controller.js'
 import { validateJwt, isAdmin } from '../../middlewares/validate.jwt.js'
+import { mostRequestedHotels, mostReservedHotels } from './hotels.controller.js'
 
 const api = Router()
 
@@ -35,6 +36,18 @@ api.delete(
     '/delete/:id',
     [validateJwt, isAdmin],
     deleteHotel
+)
+
+api.get(
+    '/mostRequestedHotels',
+    [isAdmin], 
+    mostRequestedHotels
+)
+
+api.get(
+    '/mostReserved',
+    [isAdmin],
+    mostReservedHotels
 )
 
 export default api

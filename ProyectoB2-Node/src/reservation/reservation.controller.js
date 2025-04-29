@@ -60,7 +60,7 @@ export const create = async (req, res) => {
         // Verificar disponibilidad en tiempo real
         const overlappingReservation = await Reservation.findOne({
             room,
-            status: { $in: ['pending', 'confirmed'] },
+            status: { $in: ['pending'] },
             $or: [
                 { checkInDate: { $lt: new Date(checkOutDate), $gte: new Date(checkInDate) } },
                 { checkOutDate: { $gt: new Date(checkInDate), $lte: new Date(checkOutDate) } },

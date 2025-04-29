@@ -24,7 +24,7 @@ const reservationSchema = new Schema(
         },
         status: {
             type: String,
-            enum: ['pending', 'confirmed', 'cancelled', 'completed'],
+            enum: ['pending', 'cancelled'],
             default: 'pending'
         },
         services: [{
@@ -49,4 +49,4 @@ reservationSchema.methods.toJSON = function(){
 }
 
 //Crear y exportar el modelo    
-module.exports = model('Reservation', ReservationSchema);
+export default model('Reservation', reservationSchema)

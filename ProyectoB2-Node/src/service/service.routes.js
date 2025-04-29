@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getAll, get, create, update, remove } from './service.controller.js'
+import { getAll, get, create, update, remove } from '../service/serice.controller.js'
 import { validateJwt, isAdmin } from '../../middlewares/validate.jwt.js'
 
 const api = Router()

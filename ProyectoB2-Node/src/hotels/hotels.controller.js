@@ -1,4 +1,6 @@
 import Hotel from '../models/hotel.model.js'
+import Room from '../room/room.model.js'
+import Reservation from '../reservation/reservation.model.js'
 
 // Crear hotel
 export const createHotel = async (req, res) => {
@@ -72,5 +74,126 @@ export const deleteHotel = async (req, res) => {
         res.json({ message: 'Hotel eliminado correctamente' })
     } catch (error) {
         res.status(500).json({ message: 'Error al eliminar hotel', error: error.message })
+    }
+}
+
+export const mostRequestedHotels = async (req, res)=>{
+    try {
+        const hotels = await Room.aggregate(
+            [
+                {
+                    $match: { status: 'occupied' }
+                },
+
+                {
+                    $group: {
+                        _id: '$hotel',
+                        occupiedRooms: { $sum: 1 }
+                    }
+                },
+
+                { 
+                    $sort: { occupiedRooms: -1 }
+                },
+
+                {
+                    $lookup: {
+                        from: 'hotels',
+                        localField: '_id',
+                        foreignField: '_id',
+                        as: 'hotelInfo'
+                    }
+                },
+
+                {
+                    $unwind: '$hotelInfo'
+                },
+
+                {
+                    $project: {
+                        _id: 0,
+                        hotel: '$hotelInfo',
+                        occupiedRooms: 1
+                    }
+                }
+            ]
+        )
+        res.status(200).sned(
+            {
+                message: "Hoteles más solicitados",
+                hotels
+            }
+        )
+    } catch (error) {
+        res.status(500).send(
+            { 
+                message: 'Error al eliminar hotel', 
+                error
+            }
+        )
+    }
+}
+
+export const mostReservedHotels = async (req, res) => {
+    try {
+        const hotels = await Reservation.aggregate([
+            {
+                $match: { status: 'cancelled' }
+            },
+            {
+                $lookup: {
+                    from: 'rooms',            
+                    localField: 'room',        
+                    foreignField: '_id',       
+                    as: 'roomInfo'
+                }
+            },
+            {
+                $unwind: '$roomInfo'
+            },
+            {
+                $group: {
+                    _id: '$roomInfo.hotel',  
+                    cancelledReservations: { $sum: 1 } 
+                }
+            },
+            {
+                $sort: { cancelledReservations: -1 }
+            },
+            {
+                $lookup: {
+                    from: 'hotels',
+                    localField: '_id',
+                    foreignField: '_id',
+                    as: 'hotelInfo'
+                }
+            },
+            {
+                $unwind: '$hotelInfo'
+            },
+            {
+                $project: {
+                    _id: 0,
+                    hotel: '$hotelInfo',
+                    cancelledReservations: 1
+                }
+            }
+        ])
+
+        res.status(200).send(
+            {
+                success: true,
+                message: 'Hoteles con más reservaciones',
+                hotels
+            }
+        )
+    } catch (error) {
+        console.error(error)
+        res.status(500).send(
+            { 
+                message: 'Error al obtener hoteles con más cancelaciones',
+                error 
+            }
+        )
     }
 }
