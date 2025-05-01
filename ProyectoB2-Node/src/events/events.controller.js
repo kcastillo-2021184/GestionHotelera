@@ -1,21 +1,30 @@
 import Event from "./events.model.js"
 
 // Crear un evento
-export const createEvent = async(req, res)=>{
-    try{
-        const newEvent = new Event(req.body)
-        const savedEvent = await newEvent.save()
-        res.status(201).send({savedEvent})
-    }catch(err){
-        console.error(err)
-        return res.status(400).send(
-            {
-                succes: true,
-                message: 'Event created successfully'
-            }
-        )
-    }
+export const createEvent = async (req, res) => {
+  try{
+    const newEvent = new Event(req.body)
+    const savedEvent = await newEvent.save()
+
+    return res.status(201).send(
+        {
+            success: true,
+            message: 'Event created successfully',
+            data: savedEvent
+        }
+    )
+  }catch (err) {
+    console.error(err)
+    return res.status(400).send(
+        {
+            success: false,
+            message: 'General message',
+            error: err.message
+        }
+    )
+  }
 }
+
 
 //Obtener todos
 export const getAll = async (req, res)=>{
