@@ -13,7 +13,7 @@ const roomSchema = new Schema(
             required: true
         },
         capacity: {
-            type: Number,
+            type: String,
             required: true
         },
         price: {

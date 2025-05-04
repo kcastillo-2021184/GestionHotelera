@@ -1,4 +1,4 @@
-import Hotel from '../models/hotel.model.js'
+import Hotel from './hotels.model.js'
 import Room from '../room/room.model.js'
 import Reservation from '../reservation/reservation.model.js'
 
@@ -26,17 +26,38 @@ export const getHotels = async (req, res) => {
     }
 }
 
-// Buscar hoteles por categoría (filtro)
+// Obtener hoteles por categoría (desde query params)
 export const getHotelsByCategory = async (req, res) => {
     try {
-        const { category } = req.params
+        const { category } = req.query
+
+        if (!category) {
+            return res.status(400).send({
+                success: false,
+                message: 'Category query param is required'
+            })
+        }
+
         const hotels = await Hotel.find({ category })
 
-        res.json(hotels)
-    } catch (error) {
-        res.status(500).json({ message: 'Error al buscar hoteles por categoría', error: error.message })
+        if (hotels.length === 0) {
+            return res.status(404).send({
+                success: false,
+                message: 'No hotels found in this category'
+            })
+        }
+
+        return res.send({
+            success: true,
+            message: 'Hotels found',
+            hotels
+        })
+    } catch (err) {
+        console.error(err)
+        return res.status(500).send({ success: false, message: 'Server error', err })
     }
 }
+
 
 // Editar hotel
 export const updateHotel = async (req, res) => {

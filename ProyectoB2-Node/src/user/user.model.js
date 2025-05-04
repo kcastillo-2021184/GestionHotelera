@@ -45,7 +45,8 @@ const userSchema = Schema(
         role: {
             type: String,
             uppercase: true,
-            enum: ['ADMIN', 'CLIENT']
+            enum: ['ADMIN', 'CLIENT'],
+            default: 'CLIENT'
         },
         status: {
             type: Boolean,

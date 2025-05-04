@@ -6,6 +6,7 @@ import multer from 'multer';
 import authRoutes from '../src/auth/auth.routes.js';
 import userRoutes from '../src/user/user.routes.js';
 import roomRoutes from '../src/room/room.routes.js';
+import hotelRoutes from '../src/hotels/hotels.routes.js';
 import eventsRoutes from '../src/events/events.routes.js'
 import serviceRoutes from '../src/service/service.routes.js';
 import reservationRoutes from '../src/reservation/reservation.routes.js';
@@ -27,9 +28,10 @@ const configs = (app) => {
 };
 
 const routes = (app) => {
-    app.use(authRoutes)
+    app.use('/api/auth', authRoutes)
     app.use('/v1/user', userRoutes)
     app.use('/v1/room', roomRoutes)
+    app.use('/v1/hotel', hotelRoutes)
     app.use('/v1/service', serviceRoutes)
     app.use('/v1/reservation', reservationRoutes)
     app.use('/v1/bill', billRoutes)

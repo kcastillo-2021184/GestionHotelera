@@ -5,7 +5,7 @@ import {
     createHotel,
     updateHotel,
     deleteHotel
-} from './hotel.controller.js'
+} from './hotels.controller.js'
 import { validateJwt, isAdmin } from '../../middlewares/validate.jwt.js'
 import { mostRequestedHotels, mostReservedHotels } from './hotels.controller.js'
 
@@ -18,7 +18,7 @@ api.get(
     getHotels
 )
 api.get(
-    '/category/:category',
+    '/by-category',
     [validateJwt],
     getHotelsByCategory
 )

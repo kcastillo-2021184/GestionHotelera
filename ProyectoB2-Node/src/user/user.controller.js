@@ -158,14 +158,13 @@ export const initializeAdmin = async () => {
     try {
         let adminExists = await User.findOne({ role: 'ADMIN' })
         if (!adminExists) {
-            const hashedPassword = await encrypt(process.env.ADMIN_PASSWORD)
             
             const adminUser = new User({
                 name: 'admin',
                 surname: 'ADMIN',
                 username: 'admin',
                 email: 'admin123@gmail.com',
-                password: hashedPassword,
+                password: 'FortiPrime2@',
                 phone: '12345678',
                 role: 'ADMIN'
             })
