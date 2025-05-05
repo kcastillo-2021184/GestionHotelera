@@ -139,7 +139,7 @@ export const mostRequestedHotels = async (req, res)=>{
                 }
             ]
         )
-        res.status(200).sned(
+        res.status(200).send(
             {
                 message: "Hoteles más solicitados",
                 hotels
@@ -159,28 +159,24 @@ export const mostReservedHotels = async (req, res) => {
     try {
         const hotels = await Reservation.aggregate([
             {
-                $match: { status: 'cancelled' }
+                $match: { status: { $in: ['pending', 'completed', 'cancelled'] } }
             },
             {
                 $lookup: {
-                    from: 'rooms',            
-                    localField: 'room',        
-                    foreignField: '_id',       
+                    from: 'rooms',
+                    localField: 'room',
+                    foreignField: '_id',
                     as: 'roomInfo'
                 }
             },
-            {
-                $unwind: '$roomInfo'
-            },
+            { $unwind: '$roomInfo' },
             {
                 $group: {
-                    _id: '$roomInfo.hotel',  
-                    cancelledReservations: { $sum: 1 } 
+                    _id: '$roomInfo.hotel',
+                    totalReservations: { $sum: 1 }
                 }
             },
-            {
-                $sort: { cancelledReservations: -1 }
-            },
+            { $sort: { totalReservations: -1 } },
             {
                 $lookup: {
                     from: 'hotels',
@@ -189,32 +185,28 @@ export const mostReservedHotels = async (req, res) => {
                     as: 'hotelInfo'
                 }
             },
-            {
-                $unwind: '$hotelInfo'
-            },
+            { $unwind: '$hotelInfo' },
             {
                 $project: {
                     _id: 0,
                     hotel: '$hotelInfo',
-                    cancelledReservations: 1
+                    totalReservations: 1
                 }
             }
-        ])
+        ]);
 
-        res.status(200).send(
-            {
-                success: true,
-                message: 'Hoteles con más reservaciones',
-                hotels
-            }
-        )
+        res.status(200).send({
+            success: true,
+            message: 'Hoteles con más reservaciones (todos los estados)',
+            hotels
+        });
     } catch (error) {
-        console.error(error)
-        res.status(500).send(
-            { 
-                message: 'Error al obtener hoteles con más cancelaciones',
-                error 
-            }
-        )
+        console.error(error);
+        res.status(500).send({
+            message: 'Error al obtener hoteles con más reservaciones',
+            error
+        });
     }
-}
+};
+
+

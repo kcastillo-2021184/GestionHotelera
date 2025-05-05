@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getAll, get, create, update, remove, generateInvoice } from './reservation.controller.js'
+import { getAll, get, create, update, remove, generateInvoice, getMyReservations } from './reservation.controller.js'
 import { validateJwt, isAdmin, isUser, isUserOrAdmin } from '../../middlewares/validate.jwt.js'
 import { updateReservationValidator } from '../../helpers/validators.js'
 
@@ -12,13 +12,18 @@ api.get(
     getAll
 )
 api.get(
+    '/my-reservations', 
+    [validateJwt], 
+    getMyReservations
+)
+api.get(
     '/:id',
     [validateJwt, isAdmin],
     get
 )
 api.post(
     '/',
-    [validateJwt, isUser],
+    [validateJwt],
     create
 )
 api.put(

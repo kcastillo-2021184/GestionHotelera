@@ -7,29 +7,38 @@ import { findUser } from '../helpers/db.validators.js';
 export const validateJwt = async (req, res, next) => {
     try {
         // Obtener la clave secreta del entorno
-        let secretKey = process.env.SECRET_KEY;
-        
+        const secretKey = process.env.SECRET_KEY;
+
         // Obtener el token de los headers
-        let { authorization } = req.headers;
-        
+        const { authorization } = req.headers;
+
         // Verificar si se envió el token
-        if (!authorization) return res.status(401).send({ message: 'Unauthorized' });
-        
+        if (!authorization) {
+            return res.status(401).send({ message: 'Unauthorized' });
+        }
+
         // Desencriptar el token
-        let user = jwt.verify(authorization, secretKey);
-        
-        // Verificar que el usuario aún exista en la base de datos
-        const validateUser = await findUser(user.uid);
+        const decoded = jwt.verify(authorization, secretKey);
+
+        // Buscar el usuario real en la base de datos
+        const validateUser = await findUser(decoded.uid);
+
         if (!validateUser) {
             return res.status(404).send({
                 success: false,
                 message: 'User not found - Unauthorized'
             });
         }
-        
-        // Inyectar la información del usuario en la solicitud
-        req.user = user;
-        
+
+        // Inyectar la información completa del usuario al request
+        req.user = {
+            uid: validateUser._id.toString(),
+            name: validateUser.name,
+            username: validateUser.username,
+            role: validateUser.role,
+            status: validateUser.status  // 🔥 ahora sí tienes status disponible
+        };
+
         // Pasar al siguiente middleware
         next();
     } catch (err) {
@@ -50,6 +59,13 @@ export const isAdmin = async (req, res, next) => {
                 message: `You don't have access | username ${user.username}`
             });
         }
+
+        if (user.status === false) {
+            return res.status(403).send({
+                success: false,
+                message: `Your account is deleted, you cannot do any changes 👻 | username ${user.username}`
+            })
+        }
         
         // Pasar al siguiente middleware
         next();
@@ -64,7 +80,8 @@ export const isAdmin = async (req, res, next) => {
 
 export const isUser = async(req, res, next)=>{
     try{
-        const { user } = req
+        const { user } = req;
+        console.log('🧾 User from token:', user);
         const { id } = req.params
         
         if(user.uid !== id) {

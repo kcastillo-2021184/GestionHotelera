@@ -39,14 +39,12 @@ api.delete(
 )
 
 api.get(
-    '/mostRequestedHotels',
-    [isAdmin], 
+    '/mostRequestedHotels', 
     mostRequestedHotels
 )
 
 api.get(
     '/mostReserved',
-    [isAdmin],
     mostReservedHotels
 )
 

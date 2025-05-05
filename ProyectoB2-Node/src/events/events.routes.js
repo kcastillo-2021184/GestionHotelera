@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { validateJwt } from '../../middlewares/validate.jwt.js'
+import { isAdmin, validateJwt } from '../../middlewares/validate.jwt.js'
 import { update, getAll, get, createEvent, remove} from './events.controller.js'
 
 const api = Router()
@@ -24,13 +24,13 @@ api.post(
 
 api.put(
     '/:id',
-    [validateJwt],
+    [validateJwt, isAdmin],
     update
 )
 
 api.delete(
     '/:id',
-    [validateJwt],
+    [validateJwt, isAdmin],
     remove
 )
 

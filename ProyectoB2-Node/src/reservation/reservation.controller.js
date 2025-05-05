@@ -177,3 +177,26 @@ export const generateInvoice = async (req, res) => {
         return res.status(500).send({ success: false, message: 'General Error', err })
     }
 }
+
+export const getMyReservations = async (req, res) => {
+    try {
+        const { uid } = req.user;
+
+        const reservations = await Reservation.find({ user: uid })
+            .populate('room')
+            .populate('services');
+
+        return res.json({
+            success: true,
+            message: 'User reservations retrieved successfully',
+            reservations
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: 'Internal server error',
+            error
+        });
+    }
+};

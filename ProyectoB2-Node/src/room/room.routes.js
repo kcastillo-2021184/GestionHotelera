@@ -7,12 +7,12 @@ const api = Router()
 // Rutas privadas para Admin
 api.get(
     '/',
-    [validateJwt, isAdmin],
+    [validateJwt],
     getAll
 )
 api.get(
     '/:id',
-    [validateJwt, isAdmin],
+    [validateJwt],
     get
 )
 api.post(

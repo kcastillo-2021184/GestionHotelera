@@ -33,7 +33,7 @@ export const getAll = async (req, res)=>{
         const events = await Event.find()
             .skip(skip)
             .limit(limit)
-        if(userModel.length === 0) return res.status(404).send(
+        if(events.length === 0) return res.status(404).send(
             {
                 succes: false,
                 message: 'Events not found'
