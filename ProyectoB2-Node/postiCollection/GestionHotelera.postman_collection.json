@@ -64,6 +64,60 @@
 					"response": []
 				},
 				{
+					"name": "Login Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);\r",
+									"postman.setGlobalVariable(\"token\", data.token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userLoggin",
+									"value": "netito10",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Kinalito2025@",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3616/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3616",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Register",
 					"request": {
 						"method": "POST",
@@ -94,6 +148,11 @@
 								{
 									"key": "password",
 									"value": "Kinalito2025@",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "12345678",
 									"type": "text"
 								}
 							]
@@ -488,7 +547,7 @@
 								},
 								{
 									"key": "category",
-									"value": "4.5 estrellas",
+									"value": "5 estrellas",
 									"type": "text"
 								}
 							]
@@ -642,6 +701,60 @@
 								"hotel",
 								"delete",
 								"6813f5343df5c0dc1e752b71"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mostRequestedHotels",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3616/v1/hotel/mostRequestedHotels",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3616",
+							"path": [
+								"v1",
+								"hotel",
+								"mostRequestedHotels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mostReserved",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3616/v1/hotel/mostReserved",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3616",
+							"path": [
+								"v1",
+								"hotel",
+								"mostReserved"
 							]
 						}
 					},
@@ -926,7 +1039,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3616/v1/service/",
+							"raw": "http://localhost:3616/v1/service/6817f270cc097fac37e38241",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -935,7 +1048,7 @@
 							"path": [
 								"v1",
 								"service",
-								""
+								"6817f270cc097fac37e38241"
 							]
 						}
 					},
@@ -957,17 +1070,17 @@
 							"urlencoded": [
 								{
 									"key": "name",
-									"value": "",
+									"value": "a",
 									"type": "text"
 								},
 								{
 									"key": "description",
-									"value": "",
+									"value": "a",
 									"type": "text"
 								},
 								{
 									"key": "price",
-									"value": "",
+									"value": "12",
 									"type": "text"
 								}
 							]
@@ -1004,23 +1117,23 @@
 							"urlencoded": [
 								{
 									"key": "name",
-									"value": "",
+									"value": "a2",
 									"type": "text"
 								},
 								{
 									"key": "description",
-									"value": "",
+									"value": "a2",
 									"type": "text"
 								},
 								{
 									"key": "price",
-									"value": "",
+									"value": "21",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3616/v1/service/update/",
+							"raw": "http://localhost:3616/v1/service/update/6817f270cc097fac37e38241",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1030,7 +1143,7 @@
 								"v1",
 								"service",
 								"update",
-								""
+								"6817f270cc097fac37e38241"
 							]
 						}
 					},
@@ -1048,7 +1161,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3616/v1/service/delete/",
+							"raw": "http://localhost:3616/v1/service/delete/6817f270cc097fac37e38241",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1058,7 +1171,7 @@
 								"v1",
 								"service",
 								"delete",
-								""
+								"6817f270cc097fac37e38241"
 							]
 						}
 					},
@@ -1108,7 +1221,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3616/v1/reservation/",
+							"raw": "http://localhost:3616/v1/reservation/6817f8669b0f9a9a70dbd1b7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1117,7 +1230,7 @@
 							"path": [
 								"v1",
 								"reservation",
-								""
+								"6817f8669b0f9a9a70dbd1b7"
 							]
 						}
 					},
@@ -1139,22 +1252,22 @@
 							"urlencoded": [
 								{
 									"key": "user",
-									"value": "",
+									"value": "6817ec919ab268c57b824ab0",
 									"type": "text"
 								},
 								{
 									"key": "room",
-									"value": "",
+									"value": "6817ee04b41681b718d93acb",
 									"type": "text"
 								},
 								{
 									"key": "checkInDate",
-									"value": "",
+									"value": "2025-01-01",
 									"type": "text"
 								},
 								{
 									"key": "checkOutDate",
-									"value": "",
+									"value": "2025-01-03",
 									"type": "text"
 								},
 								{
@@ -1165,12 +1278,12 @@
 								},
 								{
 									"key": "services",
-									"value": "",
+									"value": "6817f270cc097fac37e38241",
 									"type": "text"
 								},
 								{
 									"key": "totalAmount",
-									"value": "",
+									"value": "12",
 									"type": "text"
 								}
 							]
@@ -1207,22 +1320,22 @@
 							"urlencoded": [
 								{
 									"key": "user",
-									"value": "",
+									"value": "6817ec919ab268c57b824ab0",
 									"type": "text"
 								},
 								{
 									"key": "room",
-									"value": "",
+									"value": "6817ee04b41681b718d93acb",
 									"type": "text"
 								},
 								{
 									"key": "checkInDate",
-									"value": "",
+									"value": "2025-01-01",
 									"type": "text"
 								},
 								{
 									"key": "checkOutDate",
-									"value": "",
+									"value": "2025-01-03",
 									"type": "text"
 								},
 								{
@@ -1233,18 +1346,18 @@
 								},
 								{
 									"key": "services",
-									"value": "",
+									"value": "6817f270cc097fac37e38241",
 									"type": "text"
 								},
 								{
 									"key": "totalAmount",
-									"value": "",
+									"value": "122",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3616/v1/reservation/update/",
+							"raw": "http://localhost:3616/v1/reservation/update/6817f8669b0f9a9a70dbd1b7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1254,14 +1367,14 @@
 								"v1",
 								"reservation",
 								"update",
-								""
+								"6817f8669b0f9a9a70dbd1b7"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "DeleteReservation",
 					"request": {
 						"method": "DELETE",
 						"header": [
@@ -1272,7 +1385,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3616/v1/reservation/delete/",
+							"raw": "http://localhost:3616/v1/reservation/delete/6817f8669b0f9a9a70dbd1b7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1282,14 +1395,14 @@
 								"v1",
 								"reservation",
 								"delete",
-								""
+								"6817f8669b0f9a9a70dbd1b7"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "InvoiceReservation",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -1299,8 +1412,12 @@
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
 						"url": {
-							"raw": "http://localhost:3616/v1/reservation/invoice/",
+							"raw": "http://localhost:3616/v1/reservation/invoice/6817f992e181e63aa39a9614",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1310,7 +1427,34 @@
 								"v1",
 								"reservation",
 								"invoice",
-								""
+								"6817f992e181e63aa39a9614"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MyReservations",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3616/v1/reservation/my-reservations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3616",
+							"path": [
+								"v1",
+								"reservation",
+								"my-reservations"
 							]
 						}
 					},
@@ -1360,7 +1504,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3616/v1/bill/",
+							"raw": "http://localhost:3616/v1/bill/6817fa0fe181e63aa39a961a",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1369,7 +1513,7 @@
 							"path": [
 								"v1",
 								"bill",
-								""
+								"6817fa0fe181e63aa39a961a"
 							]
 						}
 					},
@@ -1387,7 +1531,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3616/v1/bill/delete/",
+							"raw": "http://localhost:3616/v1/bill/delete/6817fa0fe181e63aa39a961a",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1397,7 +1541,7 @@
 								"v1",
 								"bill",
 								"delete",
-								""
+								"6817fa0fe181e63aa39a961a"
 							]
 						}
 					},
@@ -1415,7 +1559,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODEyZjU2YjViZGM5YWU5NmJkZmVjOGQiLCJuYW1lIjoiYWRtaW4iLCJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzQ2MzM1NTY1LCJleHAiOjE3NDYzNDYzNjV9.SErbY59FEOpoIrv5HNxXAUFOivH7px1TEsYrsIrfIRo",
+								"value": "{{token}}",
 								"type": "text"
 							}
 						],
@@ -1476,7 +1620,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODEyZjU2YjViZGM5YWU5NmJkZmVjOGQiLCJuYW1lIjoiYWRtaW4iLCJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzQ2MzM1NTY1LCJleHAiOjE3NDYzNDYzNjV9.SErbY59FEOpoIrv5HNxXAUFOivH7px1TEsYrsIrfIRo",
+								"value": "{{token}}",
 								"type": "text"
 							}
 						],
@@ -1502,12 +1646,12 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODEyZjU2YjViZGM5YWU5NmJkZmVjOGQiLCJuYW1lIjoiYWRtaW4iLCJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzQ2MzM1NTY1LCJleHAiOjE3NDYzNDYzNjV9.SErbY59FEOpoIrv5HNxXAUFOivH7px1TEsYrsIrfIRo",
+								"value": "{{token}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "localhost:3616/v1/event/6817010cdfc6bb7651116ffd",
+							"raw": "localhost:3616/v1/event/6817eef2c97888441142d87f",
 							"host": [
 								"localhost"
 							],
@@ -1515,7 +1659,7 @@
 							"path": [
 								"v1",
 								"event",
-								"6817010cdfc6bb7651116ffd"
+								"6817eef2c97888441142d87f"
 							]
 						}
 					},
@@ -1528,7 +1672,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODEyZjU2YjViZGM5YWU5NmJkZmVjOGQiLCJuYW1lIjoiYWRtaW4iLCJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzQ2MzM1NTY1LCJleHAiOjE3NDYzNDYzNjV9.SErbY59FEOpoIrv5HNxXAUFOivH7px1TEsYrsIrfIRo",
+								"value": "{{token}}",
 								"type": "text"
 							}
 						],
@@ -1564,7 +1708,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODEyZjU2YjViZGM5YWU5NmJkZmVjOGQiLCJuYW1lIjoiYWRtaW4iLCJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzQ2MzM1NTY1LCJleHAiOjE3NDYzNDYzNjV9.SErbY59FEOpoIrv5HNxXAUFOivH7px1TEsYrsIrfIRo",
+								"value": "{{token}}",
 								"type": "text"
 							}
 						],
@@ -1578,57 +1722,6 @@
 								"v1",
 								"event",
 								"68170639381d95396410d60b"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "HOTELS",
-			"item": [
-				{
-					"name": "addHotel",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODEyZjU2YjViZGM5YWU5NmJkZmVjOGQiLCJuYW1lIjoiYWRtaW4iLCJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzQ2MzM1NTY1LCJleHAiOjE3NDYzNDYzNjV9.SErbY59FEOpoIrv5HNxXAUFOivH7px1TEsYrsIrfIRo",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "name",
-									"value": "Hotel Biltmore",
-									"type": "text"
-								},
-								{
-									"key": "address",
-									"value": "zona 10",
-									"type": "text"
-								},
-								{
-									"key": "category",
-									"value": "Céntrico",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "localhost:3616/v1/hotel/",
-							"host": [
-								"localhost"
-							],
-							"port": "3616",
-							"path": [
-								"v1",
-								"hotel",
-								""
 							]
 						}
 					},
