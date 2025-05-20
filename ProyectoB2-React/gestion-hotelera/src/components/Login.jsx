@@ -42,16 +42,26 @@ const Login = () => {
         password: data.password
       });
 
-      if (response.data.token) {
-        setLoginError('');
+      const { token, loggedUser: user, message } = response.data;
+      console.log('Respuesta completa:', response.data);
+ 
+      if (token && user) {
+        localStorage.setItem('token', token);
+        localStorage.setItem('user', JSON.stringify(user));
         toast.success('Sesión iniciada correctamente');
-        navigate('/dashboard');
-      } else {
-        setLoginError(response.data.message || 'Credenciales incorrectas');
+ 
+        if (user.role === 'ADMIN') {
+          navigate('/admin');
+        } else {
+          navigate('/client');
+        }
+      }
+    else {
+        setLoginError(message || 'Credenciales incorrectas');
         toast.error('Credenciales incorrectas');
       }
     } catch (error) {
-      setLoginError('Error de conexión o credenciales inválidas ');
+      setLoginError('Error de conexión o credenciales inválidas');
       toast.error('Error al iniciar sesión');
     }
   };
