@@ -58,10 +58,10 @@ const Login = () => {
 
   return (
     <div className="auth-container">
-      <h1 className="auth-title">Gestión Hotelera</h1>
+      <h1 className="auth-title">GESTIÓN HOTELERA</h1>
 
       <form className="auth-box" onSubmit={handleSubmit(onSubmit)}>
-        <h2>Iniciar sesión</h2>
+        <h2>INICIAR SESIÓN</h2>
 
         <div style={{ marginBottom: '0.5rem' }}>
           <input
@@ -70,7 +70,7 @@ const Login = () => {
             {...register('userLoggin')}
           />
           {errors.userLoggin && (
-            <p style={{ color: 'red', margin: 0 }}>{errors.userLoggin.message}</p>
+            <p style={{ color: 'white', margin: 0 }}>{errors.userLoggin.message}</p>
           )}
         </div>
 
@@ -81,13 +81,13 @@ const Login = () => {
             {...register('password')}
           />
           {errors.password && (
-            <p style={{ color: 'red', margin: 0 }}>{errors.password.message}</p>
+            <p style={{ color: 'white', margin: 0 }}>{errors.password.message}</p>
           )}
         </div>
 
         {/* Mensaje de error general */}
         {loginError && (
-          <p style={{ color: 'red', marginBottom: '1rem' }}>{loginError}</p>
+          <p style={{ color: 'white', marginBottom: '1rem' }}>{loginError}</p>
         )}
 
         <button type="submit" disabled={isSubmitting}>

@@ -62,10 +62,10 @@ const Register = () => {
 
   return (
     <div className="auth-container">
-      <h1 className="auth-title">Gestión Hotelera</h1>
+      <h1 className="auth-title">GESTIÓN HOTELERA</h1>
 
       <form className="auth-box" onSubmit={handleSubmit(onSubmit)}>
-        <h2>Registro</h2>
+        <h2>REGISTRO</h2>
 
         {[
           { name: 'name', label: 'Nombre' },
@@ -82,13 +82,13 @@ const Register = () => {
               {...register(name)}
             />
             {errors[name] && (
-              <p style={{ color: 'red', margin: 0 }}>{errors[name]?.message}</p>
+              <p style={{ color: 'white', margin: 0 }}>{errors[name]?.message}</p>
             )}
           </div>
         ))}
 
         {registerError && (
-          <p style={{ color: 'red', marginBottom: '1rem' }}>{registerError}</p>
+          <p style={{ color: 'white', marginBottom: '1rem' }}>{registerError}</p>
         )}
 
         <button type="submit" disabled={isSubmitting}>

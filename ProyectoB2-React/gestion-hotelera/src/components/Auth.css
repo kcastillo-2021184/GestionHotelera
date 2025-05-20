@@ -8,7 +8,7 @@ html, body, #root {
   
 .auth-title {
     color: white;
-    font-size: 2.5rem;
+    font-size: 2.6rem;
     margin-bottom: 2rem;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
 }
@@ -19,29 +19,38 @@ html, body, #root {
     flex-direction: column; 
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    background-image: url('../assets/fondo_login.png');
+    background-size: 170%;
+    background-position: right 30%;
+    background-repeat: no-repeat;
+    filter: brightness(1.8);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
 }
   
 .auth-box {
-    background: white;
-    padding: 2.5rem 2rem;
+    background-color: rgba(96, 106, 96, 0.1);
+    padding: 2.5rem 3rem 2.5rem 3rem;
     border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    /*border: 2px solid rgba(13, 71, 1, 0.6);
+    box-shadow: 0 0 10px rgba(16, 97, 0, 0.8);*/
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
     width: 100%;
-    max-width: 400px;
+    max-width: 330px;
+    min-height: 380px;
     text-align: center;
+    filter: opacity(1.5)
 }
   
 .auth-box h2 {
-    margin-bottom: 1.5rem;
-    color: #333;
+    margin-bottom: 1.6rem;
+    color: #ffffff;
+    font-size: 1.8em;
 }
   
 .auth-box p{
     margin-bottom: 1.5rem;
-    color: #333;
+    color: #ffffff;
     margin-top: 1rem;
     font-size: 0.9rem;
 }
@@ -50,29 +59,34 @@ html, body, #root {
     width: 90%;
     padding: 0.75rem;
     margin-bottom: 1rem;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+    border-color: transparent;
+    background-color: transparent;
+    border-bottom: 2px solid #ffffff;
     font-size: 1rem;
+    box-shadow: -4px 4px 5px rgba(0, 0, 0, 0.2);
 }  
 
 .auth-box button {
-    width: 100%;
+    width: 40%;
     padding: 0.75rem;
-    background-color: #3b82f6;
+    background-color: #081C15;
     color: white;
     border: none;
     border-radius: 8px;
     font-size: 1rem;
     cursor: pointer;
     transition: background 0.3s ease;
+    /*box-shadow: 0 0px 8px rgba(37, 153, 14, 0.8);
+    border: rgba(37, 153, 14, 0.8)2px solid*/
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6)
 }
 
 .auth-box button:hover {
-    background-color: #2563eb;  
+    background-color: rgba(15, 38, 29, 0.8);  
 }
 
 .auth-box a {
-    color: #3b82f6;
+    color: #B7E4C7;
     text-decoration: none;
     font-weight: bold;
 }
