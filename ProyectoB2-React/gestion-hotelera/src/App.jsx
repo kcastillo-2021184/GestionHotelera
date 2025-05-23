@@ -4,6 +4,7 @@ import Register from './components/Register';
 import VistaAdmin from './components/VistaAdmin';
 import VistaClient from './components/VistaClient';
 import VistaReservation from './components/VistaReservation';
+import EliminarHotel from './components/eliminarHotel';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path="/client" element={<VistaClient />} />  
       <Route path="*" element={<Navigate to="/" />} />
       <Route path="/reserva/:id" element={<VistaReservation />} />
+      <Route path="/eliminar-hotel" element={<EliminarHotel />} />
     </Routes>
   );
 }
