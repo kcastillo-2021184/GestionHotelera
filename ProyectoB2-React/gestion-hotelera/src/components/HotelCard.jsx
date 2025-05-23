@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 const HotelCard = ({ hotel }) => {
+
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -9,9 +10,16 @@ const HotelCard = ({ hotel }) => {
 
   return (
     <div className="hotel-card" onClick={handleClick}>
-      <h2>{hotel.name}</h2>
-      <p>{hotel.address}</p>
-      <p>{hotel.category}</p>
+      <div className="hotel-info">
+        <h3>{hotel.name}</h3>
+        <p>{hotel.address}</p>
+        <p>{hotel.category}</p>
+      </div>
+      <img
+        src={hotel.image || 'https://via.placeholder.com/400x200?text=Sin+imagen'}
+        alt={hotel.name}
+        className="hotel-img"
+      />
     </div>
   );
 };

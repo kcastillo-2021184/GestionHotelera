@@ -5,9 +5,9 @@ import Reservation from '../reservation/reservation.model.js'
 // Crear hotel
 export const createHotel = async (req, res) => {
     try {
-        const { name, address, category } = req.body
+        const { name, address, category, image } = req.body
 
-        const newHotel = new Hotel({ name, address, category })
+        const newHotel = new Hotel({ name, address, category, image })
         await newHotel.save()
 
         res.status(201).json(newHotel)
