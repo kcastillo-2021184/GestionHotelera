@@ -4,12 +4,16 @@
   background-color: #f5f7fa;
 }
 
+.reservation-container p{
+  color: #2a2a2a;
+}
+
 .reservation-header {
   margin-bottom: 2rem;
 }
 
 .reservation-header h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: #2a2a2a;
 }
 

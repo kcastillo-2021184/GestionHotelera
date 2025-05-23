@@ -19,7 +19,8 @@ const Navbar = ({ onSearch }) => {
       <div className="navbar-right">
         <ul className="navbar-menu">
           <li><Link to="/client">Inicio</Link></li>
-          <li><Link to="/client">Mis reservaciones</Link></li>
+          <li><Link to="/reservationsByUser">Mis reservaciones</Link></li>
+          <li><Link to="/">Salir</Link></li>
         </ul>
         <input
           type="text"

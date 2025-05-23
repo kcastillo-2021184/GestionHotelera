@@ -1,0 +1,110 @@
+.actualizar-hotel-container {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #003087 0%, #0a4eaf 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  gap: 40px;
+}
+
+.actualizar-hotel-title {
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.actualizar-hotel-form {
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.actualizar-hotel-form h2 {
+  text-align: center;
+  font-size: 1.6rem;
+  color: #003087;
+  margin-bottom: 10px;
+}
+
+.actualizar-hotel-form input {
+  font-size: 1.1rem;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1.5px solid #003087;
+  background-color: #000000;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.actualizar-hotel-form input:focus {
+  border-color: #0a4eaf;
+}
+
+.actualizar-hotel-btn {
+  padding: 15px 30px;
+  border-radius: 10px;
+  background: #d32f2f;
+  color: #fff;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: background 0.2s, transform 0.2s;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.actualizar-hotel-btn:hover {
+  background: #b71c1c;
+  transform: scale(1.04);
+}
+
+.actualizar-hotel-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.actualizar-hotel-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.actualizar-hotel-card h3 {
+  font-size: 1.3rem;
+  color: #003087;
+  margin: 0;
+}
+
+.actualizar-hotel-card p {
+  font-size: 1rem;
+  color: #444;
+  margin: 0;
+}
+
+.actualizar-hotel-vacio {
+  color: #fff;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 20px;
+}

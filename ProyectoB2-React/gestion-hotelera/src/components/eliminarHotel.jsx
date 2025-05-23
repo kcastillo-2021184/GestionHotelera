@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import '../components/EliminarHoteles.css'
+import '../components/EliminarHoteles.css';
+import { Link } from "react-router-dom";
 
 const API_LIST = "http://localhost:3616/v1/hotel/";
 const API_DELETE = "http://localhost:3616/v1/hotel/delete/";
@@ -26,10 +27,8 @@ const EliminarHotel = () => {
         return;
       }
       const data = await res.json();
-      let lista = Array.isArray(data.hoteles)
-        ? data.hoteles
-        : Array.isArray(data)
-        ? data
+      let lista = Array.isArray(data.data)
+        ? data.data
         : [];
       setHoteles(lista);
     } catch {
@@ -88,6 +87,8 @@ const EliminarHotel = () => {
           ))
         )}
       </div>
+      <br />
+      <Link to="/admin">Volver</Link>
     </div>
   );
 };

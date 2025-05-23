@@ -28,7 +28,7 @@ api.post(
 )
 api.put(
     '/update/:id',
-    [validateJwt, isUserOrAdmin, updateReservationValidator],
+    [validateJwt],
     update
 )
 api.delete(

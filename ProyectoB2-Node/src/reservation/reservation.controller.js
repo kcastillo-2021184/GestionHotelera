@@ -183,7 +183,10 @@ export const getMyReservations = async (req, res) => {
         const { uid } = req.user;
 
         const reservations = await Reservation.find({ user: uid })
-            .populate('room')
+            .populate({
+                path: "room",
+                populate: { path: "hotel" }
+            })
             .populate('services');
 
         return res.json({

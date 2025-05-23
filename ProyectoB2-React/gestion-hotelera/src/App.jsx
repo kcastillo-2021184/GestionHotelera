@@ -5,6 +5,10 @@ import VistaAdmin from './components/VistaAdmin';
 import VistaClient from './components/VistaClient';
 import VistaReservation from './components/VistaReservation';
 import EliminarHotel from './components/eliminarHotel';
+import VistaMisReservaciones from './components/VistaMyReservations';
+import AgregarHotel from './components/AgregarHotel';
+import ActualizarHotel from './components/ActualizarHoteles';
+import ListarHoteles from './components/ListarHoteles';
 
 function App() {
   return (
@@ -16,6 +20,10 @@ function App() {
       <Route path="*" element={<Navigate to="/" />} />
       <Route path="/reserva/:id" element={<VistaReservation />} />
       <Route path="/eliminar-hotel" element={<EliminarHotel />} />
+      <Route path="/reservationsByUser" element={<VistaMisReservaciones />}/>
+      <Route path="/agregar-hotel" element={<AgregarHotel />} />
+      <Route path="/editar-hotel" element={<ActualizarHotel />} />
+      <Route path="/listar-hotel" element={<ListarHoteles />} />
     </Routes>
   );
 }
