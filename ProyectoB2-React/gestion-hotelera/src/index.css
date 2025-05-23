@@ -4,7 +4,7 @@ html, body, #root {
   padding: 0;
   height: 100%;
   width: 100%;
-  background-color: #59c0fc; /* Puedes cambiar este color si lo deseas */
+  background-color: aliceblue; /* Puedes cambiar este color si lo deseas */
 }
 
 /* Fuente y estilo general */

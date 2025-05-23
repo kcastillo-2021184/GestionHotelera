@@ -1,8 +1,14 @@
 import { Router } from 'express'
-import { getAll, get, create, update, remove } from './room.controller.js'
+import { getAll, get, create, update, remove, getRoomsByHotel } from './room.controller.js'
 import { validateJwt, isAdmin } from '../../middlewares/validate.jwt.js'
 
 const api = Router()
+
+api.get(
+  '/by-hotel',
+  [validateJwt],
+  getRoomsByHotel
+);
 
 // Rutas privadas para Admin
 api.get(

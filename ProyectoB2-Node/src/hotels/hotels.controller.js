@@ -20,7 +20,7 @@ export const createHotel = async (req, res) => {
 export const getHotels = async (req, res) => {
     try {
         const hotels = await Hotel.find()
-        res.json(hotels)
+        res.json({data: hotels})
     } catch (error) {
         res.status(500).json({ message: 'Error al obtener hoteles', error: error.message })
     }

@@ -95,3 +95,15 @@ export const remove = async (req, res) => {
         return res.status(500).send({ success: false, message: 'General Error', err })
     }
 }
+
+export const getRoomsByHotel = async (req, res) => {
+  try {
+    const { hid } = req.query;
+    const rooms = await Room.find({ hotel: hid });
+    res.status(200).json({ success: true, rooms });
+  } catch (error) {
+    res.status(500).json({ message: "Error", error: error.message });
+  }
+};
+
+

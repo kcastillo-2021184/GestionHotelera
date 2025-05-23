@@ -1,31 +1,31 @@
-import { useNavigate } from "react-router-dom";
-/*import registroImg from './img/registro.png';
-import historialImg from './img/historial.png';
-import stockImg from './img/stock.png';
-import filtrosImg from './img/filtros.png';*/
-import "./vistaDashboard.css";
- 
-export const VistaClient = () => {
-  const navigate = useNavigate();
- 
-  const secciones = [
-    { titulo: "Hacer una reservacion", imagen: 'registroImg', ruta: "/registro" },
-    { titulo: "Mis reservaciones", imagen: 'historialImg', ruta: "/historial" },
-  ];
- 
+import { useHotels } from "../components/shared/hooks/useHotels";
+import HotelCard from "../components/HotelCard";
+import { useState } from "react";
+import "../components/VistaClient.css";
+import Navbar from "./Navbar";
+
+const VistaClient = () => {
+  const { hotels, isLoading } = useHotels();
+  const [search, setSearch] = useState("");
+
+  const filteredHotels = hotels.filter((hotel) =>
+    hotel.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  if (isLoading) return <p className="loading-msg">Cargando hoteles...</p>;
+
   return (
-    <div className="vista-admin">
-      <h1>Reservations</h1>
-      <div className="vista-grid">
-        {secciones.map((sec, idx) => (
-          <div key={idx} className="vista-card" onClick={() => navigate(sec.ruta)}>
-            <img src={sec.imagen} alt={sec.titulo} />
-            <div className="titulo">{sec.titulo}</div>
-          </div>
+    <>
+    <Navbar onSearch={setSearch} />
+      <header className="main-header">
+      </header>
+      <section className="hotels-container">
+        {filteredHotels.map((hotel) => (
+          <HotelCard key={hotel._id} hotel={hotel} />
         ))}
-      </div>
-    </div>
+      </section>
+    </>
   );
 };
- 
+
 export default VistaClient;

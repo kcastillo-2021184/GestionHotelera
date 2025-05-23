@@ -3,6 +3,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import VistaAdmin from './components/VistaAdmin';
 import VistaClient from './components/VistaClient';
+import VistaReservation from './components/VistaReservation';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path="/admin" element={<VistaAdmin />} />
       <Route path="/client" element={<VistaClient />} />  
       <Route path="*" element={<Navigate to="/" />} />
+      <Route path="/reserva/:id" element={<VistaReservation />} />
     </Routes>
   );
 }

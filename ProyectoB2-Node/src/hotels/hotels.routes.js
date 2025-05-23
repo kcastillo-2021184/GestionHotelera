@@ -14,7 +14,6 @@ const api = Router()
 // Rutas privadas para Admin
 api.get(
     '/',
-    [validateJwt],
     getHotels
 )
 api.get(
