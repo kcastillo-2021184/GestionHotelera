@@ -1,0 +1,57 @@
+.vista-admin {
+  padding: 1.5rem;
+  background-color: #f3f4f6;
+  min-height: 100vh;
+  background: linear-gradient(90deg,  #042c73 , #0545ac);
+}
+ 
+.vista-admin h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+  text-align: center;
+  color: #ffffff;
+}
+ 
+.vista-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5rem;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+ 
+.vista-card {
+  width: 280px;
+  background-color: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+ 
+.vista-card:hover {
+  transform: scale(1.05);
+}
+ 
+.vista-card img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  margin-top: 1rem;
+}
+ 
+.vista-card .titulo {
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  background-color: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+}

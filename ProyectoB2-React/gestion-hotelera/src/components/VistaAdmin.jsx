@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import movimientosImg from './img/movimientos.png';
 import alertasImg from './img/alertas.png';
 import estadisticasImg from './img/estadisticas.png';
-import gestionImg from './img/gestion.png';
-import "./vistaDashboard.css";*/
+import gestionImg from './img/gestion.png';*/
+import "./vistaDashboard.css";
  
 export const VistaAdmin = () => {
   const navigate = useNavigate();
